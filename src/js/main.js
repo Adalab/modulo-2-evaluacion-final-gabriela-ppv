@@ -25,7 +25,9 @@ function dataApi() {
 function handleclickSearch(event) {
   event.preventDefault();
   seriessearch = inputSearch.value;
-  dataApi();
+  if (seriessearch !== ""){ // que no busque si no hay nada en el input
+    dataApi();
+  }
 }
 //evento busqueda boton
 buttonSearch.addEventListener("click", handleclickSearch);

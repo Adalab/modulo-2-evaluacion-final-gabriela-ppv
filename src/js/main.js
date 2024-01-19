@@ -17,6 +17,7 @@ function dataApi() {
     .then((info) => {
       arraySeries = info.data;
       console.log(info.data);
+
       renderAnime(arraySeries, listResults); // aqui las mete al array,con el parametro y pinta los resultados
     });
 }
@@ -34,7 +35,6 @@ function handleAddFavorites(event) {
   event.preventDefault();
   console.log(event.currentTarget.id);
   const idAnime = event.currentTarget.id;
-  //  console.log (idAnime);
   const findAnime = arraySeries.find(
     (animeSelect) => parseInt(animeSelect.mal_id) === parseInt(idAnime)
   ); //
@@ -44,7 +44,10 @@ function handleAddFavorites(event) {
   );
   if (indexAnimeFav === -1) {
     arrayFavorites.push(findAnime);
+    console.log(arrayFavorites);
+    localStorage.setItem("animesFav", JSON.stringify(arrayFavorites)); // cuando termine de poner los fav, los guarde en el local
   }
+
   renderAnime(arrayFavorites, listFavorites);
 }
 
@@ -65,7 +68,13 @@ function renderAnime(arrayAnimes, urlrender) {
     const imageUrl = animes.images
       ? animes.images.jpg.image_url
       : replacementUrl;
-    html += `<li class ="js-anime" id="${animes.mal_id}"> <h5>${animes.title}</h5>
+
+    const indexFavoritosIn = arrayFavorites.findIndex(
+      (animeFavorite) => animeFavorite.mal_id === animes.mal_id
+    );
+    const classFavorites = indexFavoritosIn !== -1 ? "favchange" : "";
+
+    html += `<li class ="js-anime ${classFavorites}" " id="${animes.mal_id}"> <h5>${animes.title}</h5>
         <img src="${imageUrl}" alt="foto portada Anime">
         </li>`;
   }
@@ -73,3 +82,19 @@ function renderAnime(arrayAnimes, urlrender) {
 
   listenerAnime();
 }
+
+function getDataFavoritesLocal() {
+  // funcion que guarda a favoritos en el local o los pide si no estan.
+
+  const favoriteAnimeLocal = JSON.parse(localStorage.getItem("animesFav"));
+
+  if (favoriteAnimeLocal != null) {
+    arrayFavorites = favoriteAnimeLocal;
+    renderAnime(arrayFavorites, listFavorites);
+    console.log(arrayFavorites);
+  } else {
+    dataApi();
+  }
+}
+
+getDataFavoritesLocal();

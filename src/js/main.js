@@ -25,7 +25,8 @@ function dataApi() {
 function handleclickSearch(event) {
   event.preventDefault();
   seriessearch = inputSearch.value;
-  if (seriessearch !== ""){ // que no busque si no hay nada en el input
+  if (seriessearch !== "") {
+    // que no busque si no hay nada en el input
     dataApi();
   }
 }
@@ -39,7 +40,7 @@ function handleAddFavorites(event) {
   const idAnime = event.currentTarget.id;
   const findAnime = arraySeries.find(
     (animeSelect) => parseInt(animeSelect.mal_id) === parseInt(idAnime)
-  ); 
+  );
 
   const indexAnimeFav = arrayFavorites.findIndex(
     (animeSelect) => parseInt(idAnime) === parseInt(animeSelect.mal_id)
@@ -75,10 +76,10 @@ function renderAnime(arrayAnimes, urlrender) {
       (animeFavorite) => animeFavorite.mal_id === animes.mal_id
     );
 
-    const classFavorites = indexFavoritosIn !== -1 && urlrender === listResults ? "favchange" : "";
-    
+    const classFavorites =
+      indexFavoritosIn !== -1 && urlrender === listResults ? "favchange" : "";
 
-    html += `<li class ="js-anime ${classFavorites}" " id="${animes.mal_id}"> <h5>${animes.title}</h5>
+    html += `<li class =" anime js-anime ${classFavorites}" " id="${animes.mal_id}"><h5 class ="title_anime">${animes.title}</h5>
         <img src="${imageUrl}" alt="foto portada Anime">
         </li>`;
   }
@@ -86,6 +87,20 @@ function renderAnime(arrayAnimes, urlrender) {
 
   listenerAnime();
 }
+// funcion que resetea,luego del evento click.
+
+function handleReset(event) {
+  event.preventDefault();
+  let seriessearch = "";
+  let arraySeries = [];
+  let arrayFavorites = [];
+  listFavorites.innerHTML = "";
+  listResults.innerHTML = "";
+  inputSearch.value = "";
+  localStorage.setItem("animesFav", JSON.stringify([]));
+}
+
+buttonReset.addEventListener("click", handleReset); // click boton reset.
 
 function getDataFavoritesLocal() {
   // funcion que guarda a favoritos en el local o los pide si no estan.

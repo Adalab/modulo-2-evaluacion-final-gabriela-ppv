@@ -1,24 +1,52 @@
-.main{
+body {
+  background-color: rgb(81, 81, 81);
+  color: rgb(255, 255, 127);
+}
+
+.main {
   display: flex;
   flex-direction: column;
-  gap:10px;
+  gap: 10px;
   font-size: 20px;
   margin: 10px;
-
+}
+ul {
+  list-style: none;
+}
+.container {
+  display: flex;
+  //  justify-content: space-evenly;
+  gap: 60px;
+  padding: 20px;
 }
 
-.container{
- display: flex;
-//  justify-content: space-evenly;
-gap: 60px;
-padding: 20px;
-
+.favchange {
+  padding: 20px;
+  background-color: black;
+  // color: orange;
+  border: 10px solid orange;
+  width: 260px;
 }
 
+.results-list {
+  display: flex;
+  align-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  // border: 2px solid aqua;
+}
+img {
+  width: 200px;
+  height: 240px;
+  display: flex;
+  flex-direction: column;
+}
 
-.favchange{
-  background-color: goldenrod;
-  color: cadetblue;
-  border: 2px solid gray;
-
+.title_anime {
+  margin-bottom: 0;
+  width: 200px;
+  color: aqua;
+}
+h2 {
+  padding-bottom: 20px;
 }

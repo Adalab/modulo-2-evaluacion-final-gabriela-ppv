@@ -37,7 +37,7 @@ function handleAddFavorites(event) {
   const idAnime = event.currentTarget.id;
   const findAnime = arraySeries.find(
     (animeSelect) => parseInt(animeSelect.mal_id) === parseInt(idAnime)
-  ); //
+  ); 
 
   const indexAnimeFav = arrayFavorites.findIndex(
     (animeSelect) => parseInt(idAnime) === parseInt(animeSelect.mal_id)
@@ -72,7 +72,9 @@ function renderAnime(arrayAnimes, urlrender) {
     const indexFavoritosIn = arrayFavorites.findIndex(
       (animeFavorite) => animeFavorite.mal_id === animes.mal_id
     );
-    const classFavorites = indexFavoritosIn !== -1 ? "favchange" : "";
+
+    const classFavorites = indexFavoritosIn !== -1 && urlrender === listResults ? "favchange" : "";
+    
 
     html += `<li class ="js-anime ${classFavorites}" " id="${animes.mal_id}"> <h5>${animes.title}</h5>
         <img src="${imageUrl}" alt="foto portada Anime">

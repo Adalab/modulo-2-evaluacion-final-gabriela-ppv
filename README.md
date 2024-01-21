@@ -18,7 +18,7 @@ Esta es una aplicación web simple que te permite buscar y guardar tus animes fa
 
 1. Clona el repositorio.
    ```bash
-   git clone https://github.com/tuusuario/anime-search-app.git
+   git clone https://github.com/Adalab/modulo-2-evaluacion-final-gabriela-ppv.git
 
 Abre index.html en tu navegador favorito.
 

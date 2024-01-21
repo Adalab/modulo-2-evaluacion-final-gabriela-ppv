@@ -1,7 +1,7 @@
 "use strict";
 
 const replacementUrl =
-  "https://via.placeholder.com/210x295/ffffff/666666/?text=TV";
+  "https://es.wallpaper.mob.org/image/anime-devushka-volosi-dlinnie-tsvetok-nartsiss-92117.html";
 const buttonSearch = document.querySelector(".js-buttonsearch");
 const buttonReset = document.querySelector(".js-buttonreset");
 const listFavorites = document.querySelector(".js-favoriteslist");
@@ -62,28 +62,30 @@ function listenerAnime() {
 // funcion que renderiza los resultados
 function renderResultAnime() {
   listResults.innerHTML = "";
-  let html = "";
 
   inputSearch.value === ""
     ? titleSearch.classList.add("hidden")
     : titleSearch.classList.remove("hidden");
 
   for (const animes of arraySeries) {
-    const imageUrl = animes.images
-      ? animes.images.webp.image_url || animes.images.jpg.image_url
-      : replacementUrl;
+    let imageUrl = animes.images.webp.image_url;
+    if (
+      imageUrl ===
+      "https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.png"
+    ) {
+      imageUrl = replacementUrl;
+    }
 
     const indexFavoritosIn = arrayFavorites.findIndex(
       (animeFavorite) => animeFavorite.mal_id === animes.mal_id
     );
     const classFavorites = indexFavoritosIn !== -1 ? "favchange" : "";
 
-    html += `<li class =" anime js-anime ${classFavorites}" id="${animes.mal_id}">
+    listResults.innerHTML += `<li class =" anime js-anime ${classFavorites}" id="${animes.mal_id}">
        <h5 class ="title_anime">${animes.title}</h5>
       <img src="${imageUrl}" alt="foto portada Anime">
       </li>`;
   }
-  listResults.innerHTML += html;
 
   listenerAnime();
 }
@@ -91,19 +93,22 @@ function renderResultAnime() {
 // funcion que renderiza los favoritos
 function renderFavAnime() {
   listFavorites.innerHTML = ""; //(ver si es necesario)
-  let html = "";
-  for (const animes of arrayFavorites) {
-    const imageUrl = animes.images
-      ? animes.images.webp.image_url || animes.images.jpg.image_url
-      : replacementUrl;
 
-    html += `<li class =" anime js-anime" id="${animes.mal_id}">
+  for (const animes of arrayFavorites) {
+    let imageUrl = animes.images.webp.image_url;
+    if (
+      imageUrl ===
+      "https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.png"
+    ) {
+      imageUrl = replacementUrl;
+    }
+
+    listFavorites.innerHTML += `<li class =" anime js-anime" id="${animes.mal_id}">
          <h5 class ="title_anime">${animes.title}</h5>
           <img src="${imageUrl}" alt="foto portada Anime">
           <button class=" btn__css js-remov">Eliminar</button>
           </li>`;
   }
-  listFavorites.innerHTML += html;
 
   listenerAnime();
   listenerButtonRemoveFav();
@@ -116,6 +121,7 @@ function handleDeleteFav(event) {
   const clickedParent = btnClicked.parentNode;
   console.log(clickedParent);
   const idBtnRemoveFav = clickedParent.id;
+
   // const findremoveId = arrayFavorites.findIndex(
   //   (favRemove) => favRemove.mal_id === parseInt(idBtnRemoveFav)//era una cadena lo he puesto en numero
   // );

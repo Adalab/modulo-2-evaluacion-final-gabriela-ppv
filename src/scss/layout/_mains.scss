@@ -4,36 +4,59 @@ body {
 }
 
 .main {
-  display: flex;
-  flex-direction: column;
   gap: 10px;
   font-size: 20px;
   margin: 10px;
+  &__title--Initial {
+    margin-top: 30px;
+    text-align: center;
+  }
 }
+
 ul {
   list-style: none;
 }
+.btn__css {
+  background-color: aqua;
+  border-radius: 30px;
+  border: 2.5px solid aqua;
+  font-size: 1.5rem;
+  text-align: center;
+  margin-top: 51px;
+  margin-left: 12px;
+  width: 100px;
+  height: 30px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.search__section {
+  text-align: center;
+
+  &--input {
+    width: 300px;
+    height: 30px;
+    border: 3px solid aqua;
+  }
+}
+
 .container {
   display: flex;
-  //  justify-content: space-evenly;
   gap: 60px;
   padding: 20px;
 }
 
-.favchange {
-  padding: 20px;
-  background-color: black;
-  // color: orange;
-  border: 10px solid orange;
-  width: 260px;
+.favorites-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
 
 .results-list {
   display: flex;
   align-content: center;
   flex-wrap: wrap;
-  gap: 15px;
-  // border: 2px solid aqua;
+  gap: 40px;
 }
 img {
   width: 200px;
@@ -45,8 +68,23 @@ img {
 .title_anime {
   margin-bottom: 0;
   width: 200px;
-  color: aqua;
+  color: rgb(93, 234, 234);
+  padding: 10px;
+  border: 1px solid black;
 }
-h2 {
+.title__ppl {
   padding-bottom: 20px;
+}
+
+.anime {
+  border: 1px solid black;
+}
+
+.favchange {
+  padding: 30px;
+  background-color: orange;
+  width: 260px;
+}
+.hidden {
+  display: none;
 }

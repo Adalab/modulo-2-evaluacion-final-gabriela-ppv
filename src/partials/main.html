@@ -1,19 +1,23 @@
 <main class="main">
-  <h1>Buscador de series Anime</h1>
+  <h1 class="main__title--Initial">Buscador de series Anime</h1>
 
-  <div class="search-section">
-    <input type="text" placeholder="Buscar series de anime" class="js-input" />
-    <button class="js-buttonsearch">Buscar</button>
-    <button class="js-buttonreset">Reset</button>
+  <div class="search__section">
+    <input
+      type="text"
+      placeholder="Buscar series de anime"
+      class="search__section--input js-input"
+    />
+    <button class="btn__css js-buttonsearch">Buscar</button>
+    <button class="btn__css js-buttonreset">Reset</button>
   </div>
   <section class="container">
     <div class="favorites-section">
-      <h2>Series Favoritas</h2>
+      <h3 class="title__ppl">Tus Series Favoritas<span> &hearts;</span></h3>
       <ul class="favorites-list js-favoriteslist"></ul>
     </div>
 
     <div class="results-section">
-      <h2>Resultados de Búsqueda</h2>
+      <h3 class="title__ppl js-title-result hidden">Resultados de Búsqueda</h3>
       <ul class="results-list js-resultslist"></ul>
     </div>
   </section>

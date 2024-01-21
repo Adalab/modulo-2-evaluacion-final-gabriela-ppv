@@ -1,7 +1,6 @@
 "use strict";
 
-const replacementUrl =
-  "https://es.wallpaper.mob.org/image/anime-devushka-volosi-dlinnie-tsvetok-nartsiss-92117.html";
+const replacementUrl = "https://placehold.co/250x350";
 const buttonSearch = document.querySelector(".js-buttonsearch");
 const buttonReset = document.querySelector(".js-buttonreset");
 const listFavorites = document.querySelector(".js-favoriteslist");
@@ -12,6 +11,8 @@ let seriessearch = "";
 let arraySeries = [];
 let arrayFavorites = [];
 
+// funcion que pide la informacion a Api
+
 function dataApi() {
   fetch(`https://api.jikan.moe/v4/anime?q=${seriessearch}`)
     .then((response) => response.json())
@@ -21,8 +22,7 @@ function dataApi() {
       renderResultAnime();
     });
 }
-
-// funcion manejadora del evento click de la busqueda general
+// funcion manejadora  evento click busqueda
 function handleclickSearch(event) {
   event.preventDefault();
   seriessearch = inputSearch.value;
@@ -34,9 +34,9 @@ function handleclickSearch(event) {
 
 buttonSearch.addEventListener("click", handleclickSearch);
 
+// funcion que filtra favoritos
 function handleAddFavorites(event) {
-  //funcion manejadora evento click favoritos
-  const idAnime = parseInt(event.currentTarget.id); // me lo da en una cadena
+  const idAnime = parseInt(event.currentTarget.id);
   const findAnime = arraySeries.find(
     (animeSelect) => parseInt(animeSelect.mal_id) === idAnime
   );
@@ -51,15 +51,14 @@ function handleAddFavorites(event) {
 
   renderFavAnime();
 }
-// funcion que escucha eventos en los anime y se ejecuta en render al terminar render.
+// funcion que escucha el evento click de cada anime
 function listenerAnime() {
   const allAnime = document.querySelectorAll(".js-anime");
   for (const oneAnime of allAnime) {
     oneAnime.addEventListener("click", handleAddFavorites);
   }
 }
-
-// funcion que renderiza los resultados
+// funcion que renderiza los resultados de la busqueda
 function renderResultAnime() {
   listResults.innerHTML = "";
 
@@ -89,10 +88,9 @@ function renderResultAnime() {
 
   listenerAnime();
 }
-
-// funcion que renderiza los favoritos
+// funcion que renderiza los resultados de lista favoritos
 function renderFavAnime() {
-  listFavorites.innerHTML = ""; //(ver si es necesario)
+  listFavorites.innerHTML = "";
 
   for (const animes of arrayFavorites) {
     let imageUrl = animes.images.webp.image_url;
@@ -110,37 +108,36 @@ function renderFavAnime() {
           </li>`;
   }
 
-  listenerAnime();
   listenerButtonRemoveFav();
 }
-
+// funcion que borra los favoritos de la lista fav.
 function handleDeleteFav(event) {
-  // event.preventDefault();
   const btnClicked = event.target;
-  // console.log(btnClicked)
   const clickedParent = btnClicked.parentNode;
-  console.log(clickedParent);
   const idBtnRemoveFav = clickedParent.id;
 
-  // const findremoveId = arrayFavorites.findIndex(
-  //   (favRemove) => favRemove.mal_id === parseInt(idBtnRemoveFav)//era una cadena lo he puesto en numero
-  // );
-  // console.log(findremoveId);
-  // if (findremoveId !== -1) {
-  //   arrayFavorites.splice(findremoveId, 1);
-  //   localStorage.setItem("animesFav", JSON.stringify(arrayFavorites));//volver a guardarllos?
+  const findremov = arrayFavorites.find(
+    (animeremov) => animeremov.mal_id === parseInt(idBtnRemoveFav)
+  );
+  const findremoveId = arrayFavorites.findIndex(
+    (favRemove) => parseInt(favRemove.mal_id) === parseInt(idBtnRemoveFav)
+  );
 
-  //     renderFavAnime();
-  // }
+  if (findremoveId !== -1) {
+    arrayFavorites.splice(findremoveId, 1);
+    localStorage.setItem("animesFav", JSON.stringify(arrayFavorites));
+
+    renderFavAnime();
+  }
 }
-
+// funcion que escucha el evento click de boton removerfav
 function listenerButtonRemoveFav() {
   const allBtnRemoveFav = document.querySelectorAll(".js-remov");
   for (const onebtn of allBtnRemoveFav) {
     onebtn.addEventListener("click", handleDeleteFav);
   }
 }
-
+// funcion manejadora boton reset
 function handleReset(event) {
   event.preventDefault();
   seriessearch = "";
@@ -153,8 +150,9 @@ function handleReset(event) {
   localStorage.setItem("animesFav", JSON.stringify([]));
 }
 
-buttonReset.addEventListener("click", handleReset); // click boton reset.
+buttonReset.addEventListener("click", handleReset);
 
+// funcion que guarda favoritos en localStorage
 function getDataFavoritesLocal() {
   const favoriteAnimeLocal = JSON.parse(localStorage.getItem("animesFav"));
 

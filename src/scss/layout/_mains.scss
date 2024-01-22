@@ -4,12 +4,13 @@ body {
 }
 
 .main {
-  gap: 10px;
-  font-size: 20px;
-  margin: 10px;
   &__title--Initial {
     margin-top: 30px;
     text-align: center;
+  }
+  @media (min-width: 768px) {
+    font-size: 20px;
+    margin: 10px;
   }
 }
 
@@ -29,7 +30,6 @@ ul {
   margin-bottom: 10px;
   font-weight: bold;
   color: $color-background;
-  
 }
 
 .search__section {
@@ -39,7 +39,6 @@ ul {
     width: 300px;
     height: 30px;
     border: 3px solid $color-aqua;
-    
   }
 }
 

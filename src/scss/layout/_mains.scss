@@ -1,6 +1,6 @@
 body {
-  background-color: rgb(81, 81, 81);
-  color: rgb(255, 255, 127);
+  background-color: $color-background;
+  color: $color-yellow;
 }
 
 .main {
@@ -17,9 +17,9 @@ ul {
   list-style: none;
 }
 .btn__css {
-  background-color: aqua;
+  background-color: $color-medium;
   border-radius: 30px;
-  border: 2.5px solid aqua;
+  border: 2.5px solid $color-aqua;
   font-size: 1.5rem;
   text-align: center;
   margin-top: 51px;
@@ -28,6 +28,8 @@ ul {
   height: 30px;
   margin-bottom: 10px;
   font-weight: bold;
+  color: $color-background;
+  
 }
 
 .search__section {
@@ -36,7 +38,8 @@ ul {
   &--input {
     width: 300px;
     height: 30px;
-    border: 3px solid aqua;
+    border: 3px solid $color-aqua;
+    
   }
 }
 
@@ -68,21 +71,21 @@ img {
 .title_anime {
   margin-bottom: 0;
   width: 200px;
-  color: rgb(93, 234, 234);
+  color: $color-light;
   padding: 10px;
-  border: 1px solid black;
+  border: 1px solid $color-black;
 }
 .title__ppl {
   padding-bottom: 20px;
 }
 
 .anime {
-  border: 1px solid black;
+  border: 1px solid $color-black;
 }
 
 .favchange {
   padding: 30px;
-  background-color: orange;
+  background-color: $color-favorites;
   width: 260px;
 }
 .hidden {

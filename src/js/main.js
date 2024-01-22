@@ -116,9 +116,6 @@ function handleDeleteFav(event) {
   const clickedParent = btnClicked.parentNode;
   const idBtnRemoveFav = clickedParent.id;
 
-  const findremov = arrayFavorites.find(
-    (animeremov) => animeremov.mal_id === parseInt(idBtnRemoveFav)
-  );
   const findremoveId = arrayFavorites.findIndex(
     (favRemove) => parseInt(favRemove.mal_id) === parseInt(idBtnRemoveFav)
   );

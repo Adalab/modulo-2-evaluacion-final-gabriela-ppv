@@ -1,6 +1,6 @@
 "use strict";
 
-const replacementUrl = "https://placehold.co/250x350/0000ff/ffff00/Anime";
+const replacementUrl = "https://placehold.co/250x350";
 const buttonSearch = document.querySelector(".js-buttonsearch");
 const buttonReset = document.querySelector(".js-buttonreset");
 const listFavorites = document.querySelector(".js-favoriteslist");
